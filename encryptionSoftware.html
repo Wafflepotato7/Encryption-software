@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encryption Software</title>
+  <style>
+    body {
+      font-family: Roboto, Arial, sans-serif;
+      background-color: #18191A;
+      color: #f1f3f4;
+      text-align: center;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      color: #fff;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      background-color: #28292C;
+      color: #f1f3f4;
+      width: 250px; /* Reduced width */
+    }
+
+    button {
+      background-color: #673AB7; /* Blue-purple color */
+      color: #fff;
+      cursor: pointer;
+      padding: 8px 12px; /* Smaller button size */
+      border-radius: 10px;
+      border: none;
+      margin-left: 10px;
+    }
+
+    #decryptedMessage {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      background-color: #28292C;
+      color: #f1f3f4;
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: #888;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="margin-top: 20px;">Encryption Software</h1>
+  <div class="input-container">
+    <input type="text" id="message" placeholder="Enter a message to encrypt">
+    <button onclick="decrypt()">Encrypt</button>
+  </div>
+  <p id="decryptedMessage">
+    <span id="decryptedText"></span>
+    <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+  </p>
+  <div class="footer">developed by wafflepotato studios</div>
+  <script>
+    function decrypt() {
+      var message = document.getElementById("message").value;
+      var decryptedMessage = "";
+      for (var i = 0; i < message.length; i++) {
+        decryptedMessage += String.fromCharCode(message.charCodeAt(i) + 3);
+      }
+      document.getElementById("decryptedText").textContent = decryptedMessage;
+      document.getElementById("decryptedMessage").style.display = "block";
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById("decryptedText").textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
